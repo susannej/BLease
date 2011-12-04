@@ -1,0 +1,60 @@
+<project name="BLease-Server" basedir="." default="generate.service">
+
+    <property environment="env"/>
+    <property name="AXIS2_HOME" value="C:/axis2-1.6.1/"/>
+
+    <property name="build.dir" value="${basedir}/bin"/>
+
+    <path id="axis2.classpath">
+        <fileset dir="${AXIS2_HOME}/lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+	<path id="client.class.path">
+		<fileset dir="${AXIS2_HOME}/lib">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement location="${build.dir}" />
+	</path>
+
+    <target name="compile">
+        <mkdir dir="${build.dir}"/>
+
+        <!--First let's compile the classes-->
+        <javac debug="on" 
+               fork="true"
+               destdir="${build.dir}" 
+               srcdir="${basedir}/src"
+               classpathref="axis2.classpath">
+        </javac>
+    </target>
+
+    <target name="generate.service" depends="compile">
+        <!--aar them up -->
+        <copy toDir="${build.dir}" failonerror="false">
+            <fileset dir="${basedir}/resources">
+                <include name="**/*.xml"/>
+                <include name="**/*.wsdl"/>
+            </fileset>
+        </copy>
+        <jar destfile="${build.dir}/BLeaseServer.aar">
+            <fileset excludes="**/Test.class" dir="${build.dir}"/>
+        </jar>
+        <copy file="${build.dir}/BLeaseServer.aar"
+              toDir="${basedir}/../../repository/services"
+              overwrite="yes">  
+        </copy> 
+    </target>
+
+<!-- 
+    <target name="run.client" depends="compile">
+        <java classname="samples.quickstart.clients.AXIOMClient" fork="true">
+            <classpath refid="client.class.path" />
+        </java>
+    </target>
+ -->
+	
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+</project>

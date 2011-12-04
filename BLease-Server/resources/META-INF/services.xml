@@ -1,0 +1,12 @@
+<service name="BLeaseServer" scope="application">
+    <description>
+        BLease Server service
+    </description>
+    <operation name="getDate">
+        <messageReceiver class="org.apache.axis2.receivers.RawXMLINOutMessageReceiver"/>
+    </operation>
+    <operation name="update">
+        <messageReceiver class="org.apache.axis2.receivers.RawXMLINOnlyMessageReceiver"/>
+    </operation>
+    <parameter name="ServiceClass">blease.Ping</parameter>
+</service>
