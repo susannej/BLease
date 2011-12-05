@@ -41,7 +41,7 @@
             <fileset excludes="**/Test.class" dir="${build.dir}"/>
         </jar>
         <copy file="${build.dir}/BLeaseServer.aar"
-              toDir="${basedir}/../../repository/services"
+        	  toDir="C:\apache-tomcat-7.0.23\webapps\axis2\WEB-INF\services"
               overwrite="yes">  
         </copy> 
     </target>
@@ -56,5 +56,6 @@
 	
     <target name="clean">
         <delete dir="${build.dir}"/>
+    	<mkdir dir="${build.dir}"/>
     </target>
 </project>

@@ -1,14 +1,19 @@
 package blease
 
-import javax.xml.stream.XMLStreamException;
-import javax.xml.namespace.QName;
+import javax.xml.stream.XMLStreamException
+import javax.xml.namespace.QName
 
-import org.apache.axiom.om.OMAbstractFactory;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.OMFactory;
-import org.apache.axiom.om.OMNamespace;
+import org.apache.axiom.om.OMAbstractFactory
+import org.apache.axiom.om.OMElement
+import org.apache.axiom.om.OMFactory
+import org.apache.axiom.om.OMNamespace
 
-import java.util.HashMap;
+import tools.OMElementBuilder
+
+import static java.text.DateFormat.*
+import static java.util.Locale.*
+
+import java.util.HashMap
 
 class Ping {
 
@@ -17,25 +22,17 @@ class Ping {
     private String namespace = "http://quickstart.samples/xsd";
 
     OMElement getDate(OMElement element) throws XMLStreamException {
-        element.build();
-        element.detach();
-
-        OMElement symbolElement = element.getFirstElement();
-        String symbol = symbolElement.getText();
-
-        String returnText = "42";
-        Double price = (Double) map.get(symbol);
-        if(price != null){
-            returnText  = "" + price.doubleValue();
-        }
-        OMFactory fac = OMAbstractFactory.getOMFactory();
-        OMNamespace omNs =
-            fac.createOMNamespace(namespace, "ns");
-        OMElement method = fac.createOMElement("getPriceResponse", omNs);
-        OMElement value = fac.createOMElement("return", omNs);
-        value.addChild(fac.createOMText(value, returnText));
-        method.addChild(value);
-        return method;
+		
+		def xmlin = new XmlSlurper().parseText(element.toString());
+		
+		def xmlout = new OMElementBuilder()
+		
+		xmlout.getDateResponse() {
+			currentDate( new Date() )
+			germanLocale( getDateInstance(FULL, GERMAN).format(new Date()))
+		}
+		
+		xmlout.result
     }
 
     void update(OMElement element) throws XMLStreamException {
