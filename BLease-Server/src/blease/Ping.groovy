@@ -17,13 +17,9 @@ import java.util.HashMap
 
 class Ping {
 
-    private HashMap map = new HashMap();
-
-    private String namespace = "http://quickstart.samples/xsd";
-
     OMElement getDate(OMElement element) throws XMLStreamException {
 		
-		def xmlin = new XmlSlurper().parseText(element.toString());
+		def xmlin = new XmlSlurper().parseText(element.toString())
 		
 		def xmlout = new OMElementBuilder()
 		
@@ -36,16 +32,9 @@ class Ping {
     }
 
     void update(OMElement element) throws XMLStreamException {
-        element.build();
-        element.detach();
+		
+		def xmlin = new XmlSlurper().parseText(element.toString())
 
-        OMElement symbolElement = element.getFirstChildWithName(new QName(namespace, "symbol"));
-        String symbol = symbolElement.getText();
-
-        OMElement priceElement = element.getFirstChildWithName(new QName(namespace, "price"));
-        String price = priceElement.getText();
-
-        map.put(symbol, new Double(price));
     }
 
 }
