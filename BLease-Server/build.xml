@@ -2,10 +2,11 @@
 
     <property environment="env"/>
     <property name="AXIS2_HOME" value="C:/axis2-1.6.1/"/>
+	<property name="GROOVY_HOME" value="C:/groovy-1.8.4/"/>
 
     <property name="build.dir" value="${basedir}/bin"/>
 
-    <path id="axis2.classpath">
+	<path id="axis2.classpath">
         <fileset dir="${AXIS2_HOME}/lib">
             <include name="*.jar"/>
         </fileset>
@@ -16,17 +17,40 @@
 		</fileset>
 		<pathelement location="${build.dir}" />
 	</path>
+	<path id="groovy.classpath">
+		<fileset dir="${GROOVY_HOME}/lib">
+			<include name="*.jar" />
+		</fileset>
+	  	<!-- path location="C:/groovy-1.8.4/lib/groovy-1.8.4.jar"/ -->
+	</path>
 
+	<taskdef name="groovyc"
+	         classname="org.codehaus.groovy.ant.Groovyc"
+	         classpathref="groovy.classpath"/>
+	
     <target name="compile">
         <mkdir dir="${build.dir}"/>
 
         <!--First let's compile the classes-->
+    	<!-- 
         <javac debug="on" 
                fork="true"
                destdir="${build.dir}" 
                srcdir="${basedir}/src"
                classpathref="axis2.classpath">
         </javac>
+        -->
+    	<groovyc srcdir="${basedir}/src" destdir="${build.dir}">
+    	  <classpath>
+    	  	<!-- 
+    	    <pathelement path="${mainClassesDirectory}"/>
+    	    <pathelement path="${testClassesDirectory}"/>
+    	    -->
+    	  	<path location="C:/groovy-1.8.4/lib/groovy-1.8.4.jar"/>
+    	    <path refid="axis2.classpath"/>
+    	  </classpath>
+    	  <javac source="1.7" target="1.7" debug="on" />
+    	</groovyc>
     </target>
 
     <target name="generate.service" depends="compile">
@@ -37,10 +61,10 @@
                 <include name="**/*.wsdl"/>
             </fileset>
         </copy>
-        <jar destfile="${build.dir}/BLeaseServer.aar">
+        <jar destfile="${basedir}/BLeaseServer.aar">
             <fileset excludes="**/Test.class" dir="${build.dir}"/>
         </jar>
-        <copy file="${build.dir}/BLeaseServer.aar"
+        <copy file="${basedir}/BLeaseServer.aar"
         	  toDir="C:\apache-tomcat-7.0.23\webapps\axis2\WEB-INF\services"
               overwrite="yes">  
         </copy> 

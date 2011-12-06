@@ -35,6 +35,7 @@ class Ping {
 		
 		def xmlin = new XmlSlurper().parseText(element.toString())
 
+
     }
 
 }
