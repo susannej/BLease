@@ -32,20 +32,8 @@
         <mkdir dir="${build.dir}"/>
 
         <!--First let's compile the classes-->
-    	<!-- 
-        <javac debug="on" 
-               fork="true"
-               destdir="${build.dir}" 
-               srcdir="${basedir}/src"
-               classpathref="axis2.classpath">
-        </javac>
-        -->
     	<groovyc srcdir="${basedir}/src" destdir="${build.dir}">
     	  <classpath>
-    	  	<!-- 
-    	    <pathelement path="${mainClassesDirectory}"/>
-    	    <pathelement path="${testClassesDirectory}"/>
-    	    -->
     	  	<path location="C:/groovy-1.8.4/lib/groovy-1.8.4.jar"/>
     	    <path refid="axis2.classpath"/>
     	  </classpath>
