@@ -13,7 +13,6 @@ import tools.OMElementBuilder
 import static java.text.DateFormat.*
 import static java.util.Locale.*
 
-import java.util.HashMap
 
 class Ping {
 
