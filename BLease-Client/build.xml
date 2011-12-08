@@ -1,4 +1,4 @@
-<project name="BLease-Server" basedir="." default="compile">
+<project name="BLease-Client" basedir="." default="compile">
 
     <property environment="env"/>
     <property name="AXIS2_HOME" value="C:/axis2-1.6.1/"/>
