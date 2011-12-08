@@ -1,12 +1,6 @@
 package blease
 
-import javax.xml.stream.XMLStreamException
-import javax.xml.namespace.QName
-
-import org.apache.axiom.om.OMAbstractFactory
 import org.apache.axiom.om.OMElement
-import org.apache.axiom.om.OMFactory
-import org.apache.axiom.om.OMNamespace
 
 import tools.OMElementBuilder
 
@@ -16,7 +10,7 @@ import static java.util.Locale.*
 
 class Ping {
 
-    OMElement getDate(OMElement element) throws XMLStreamException {
+    OMElement getDate(OMElement element) {
 		
 		def xmlin = new XmlSlurper().parseText(element.toString())
 		
@@ -30,10 +24,9 @@ class Ping {
 		xmlout.result
     }
 
-    void update(OMElement element) throws XMLStreamException {
+    void update(OMElement element) {
 		
 		def xmlin = new XmlSlurper().parseText(element.toString())
-
 
     }
 
