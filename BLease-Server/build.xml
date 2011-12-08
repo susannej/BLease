@@ -58,14 +58,6 @@
         </copy> 
     </target>
 
-<!-- 
-    <target name="run.client" depends="compile">
-        <java classname="samples.quickstart.clients.AXIOMClient" fork="true">
-            <classpath refid="client.class.path" />
-        </java>
-    </target>
- -->
-	
     <target name="clean">
         <delete dir="${build.dir}"/>
     	<mkdir dir="${build.dir}"/>
