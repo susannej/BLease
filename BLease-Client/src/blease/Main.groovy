@@ -1,0 +1,5 @@
+package blease
+
+class Main {
+
+}
