@@ -1,4 +1,4 @@
-<project name="BLease-Server" basedir="." default="generate.service">
+<project name="BLease-Server" basedir="." default="compile">
 
     <property environment="env"/>
     <property name="AXIS2_HOME" value="C:/axis2-1.6.1/"/>
@@ -32,14 +32,6 @@
         <mkdir dir="${build.dir}"/>
 
         <!--First let's compile the classes-->
-    	<!-- 
-        <javac debug="on" 
-               fork="true"
-               destdir="${build.dir}" 
-               srcdir="${basedir}/src"
-               classpathref="axis2.classpath">
-        </javac>
-        -->
     	<groovyc srcdir="${basedir}/src" destdir="${build.dir}">
     	  <classpath>
     	  	<!-- 
@@ -51,23 +43,6 @@
     	  </classpath>
     	  <javac source="1.7" target="1.7" debug="on" />
     	</groovyc>
-    </target>
-
-    <target name="generate.service" depends="compile">
-        <!--aar them up -->
-        <copy toDir="${build.dir}" failonerror="false">
-            <fileset dir="${basedir}/resources">
-                <include name="**/*.xml"/>
-                <include name="**/*.wsdl"/>
-            </fileset>
-        </copy>
-        <jar destfile="${basedir}/BLeaseServer.aar">
-            <fileset excludes="**/Test.class" dir="${build.dir}"/>
-        </jar>
-        <copy file="${basedir}/BLeaseServer.aar"
-        	  toDir="C:\apache-tomcat-7.0.23\webapps\axis2\WEB-INF\services"
-              overwrite="yes">  
-        </copy> 
     </target>
 
 <!-- 
