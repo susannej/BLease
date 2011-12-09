@@ -6,6 +6,7 @@ import org.apache.axiom.om.OMAbstractFactory
 import org.apache.axiom.om.OMElement
 import org.apache.axiom.om.OMFactory
 import org.apache.axiom.om.OMNamespace
+import javax.xml.namespace.QName
 
 /*
  * This code was found on the internet (stackoverflow.com), without any copyright notice in an answer
@@ -38,9 +39,14 @@ class OMElementBuilder extends BuilderSupport {
     }
 
     def createNode(name, Map attributes, value) {
+		OMElement node
         OMFactory   fact = OMAbstractFactory.getOMFactory()
-        OMNamespace omNs = fact.createOMNamespace(namespace, "ns")
-        OMElement   node = fact.createOMElement(name, omNs)
+		if (namespace) {
+			OMNamespace omNs = fact.createOMNamespace(namespace, "ns")
+			node = fact.createOMElement(name, omNs)
+		} else {
+			node = fact.createOMElement(new QName(name))
+		}
 
         if (value) {
             fact.createOMText(node, value)
