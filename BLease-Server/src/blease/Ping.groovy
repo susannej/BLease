@@ -12,6 +12,8 @@ class Ping {
 
     OMElement getDate(OMElement element) {
 		
+		println element.toString()
+		
 		def xmlin = new XmlSlurper().parseText(element.toString())
 		
 		def xmlout = new OMElementBuilder()
