@@ -1,8 +1,8 @@
 <project name="BLease-Server" basedir="." default="generate.service">
 
     <property environment="env"/>
-    <property name="AXIS2_HOME" value="C:/axis2-1.6.1/"/>
-	<property name="GROOVY_HOME" value="C:/groovy-1.8.4/"/>
+    <property name="AXIS2_HOME" value="C:/java/axis2-1.6.1/"/>
+	<property name="GROOVY_HOME" value="C:/java/groovy-1.8.4/"/>
 
     <property name="build.dir" value="${basedir}/bin"/>
 
@@ -34,7 +34,7 @@
         <!--First let's compile the classes-->
     	<groovyc srcdir="${basedir}/src" destdir="${build.dir}">
     	  <classpath>
-    	  	<path location="C:/groovy-1.8.4/lib/groovy-1.8.4.jar"/>
+    	  	<path location="C:/java/groovy-1.8.4/lib/groovy-1.8.4.jar"/>
     	    <path refid="axis2.classpath"/>
     	  </classpath>
     	  <javac source="1.7" target="1.7" debug="on" />
@@ -53,7 +53,7 @@
             <fileset excludes="**/Test.class" dir="${build.dir}"/>
         </jar>
         <copy file="${basedir}/BLeaseServer.aar"
-        	  toDir="C:\apache-tomcat-7.0.23\webapps\axis2\WEB-INF\services"
+        	  toDir="C:\java\apache-tomcat-7.0.23\webapps\axis2\WEB-INF\services"
               overwrite="yes">  
         </copy> 
     </target>
