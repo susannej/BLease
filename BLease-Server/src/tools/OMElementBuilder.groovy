@@ -2,11 +2,12 @@ package tools
 
 import groovy.util.BuilderSupport  
 
+import javax.xml.namespace.QName
+
 import org.apache.axiom.om.OMAbstractFactory
 import org.apache.axiom.om.OMElement
 import org.apache.axiom.om.OMFactory
 import org.apache.axiom.om.OMNamespace
-import javax.xml.namespace.QName
 
 /*
  * This code was found on the internet (stackoverflow.com), without any copyright notice in an answer
@@ -27,15 +28,15 @@ class OMElementBuilder extends BuilderSupport {
     }
 
     def createNode(name) {
-        return createNode(name, null, null)
+        createNode(name, null, null)
     }
 
     def createNode(name, value) {
-        return createNode(name, null, value)
+        createNode(name, null, value)
     }
 
     def createNode(name, Map attributes) {
-        return createNode(name, attributes, null)
+        createNode(name, attributes, null)
     }
 
     def createNode(name, Map attributes, value) {
@@ -52,7 +53,7 @@ class OMElementBuilder extends BuilderSupport {
             fact.createOMText(node, value)
         }
 
-        return node
+        node
     }
 
     void setParent(parent, child) {
