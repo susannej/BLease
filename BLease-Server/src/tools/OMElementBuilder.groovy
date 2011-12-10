@@ -12,10 +12,6 @@ import org.apache.axiom.om.OMNamespace
 /*
  * This code was found on the internet (stackoverflow.com), without any copyright notice in an answer
  * from a user named: Mark O'Connor
- * 
- * TODO: verify (and understand) this code against the codehaus.org example "Make a Builder" WEB-Site
- * http://groovy.codehaus.org/Make+a+builder
- * 
  */
 
 class OMElementBuilder extends BuilderSupport {
