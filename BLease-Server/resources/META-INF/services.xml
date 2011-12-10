@@ -1,23 +1,14 @@
 <serviceGroup> <!-- BLeaseServer -->
 
-    <!--
-        TODO: Verify in the axis-examples, if the ActionMappings are needed!
-        Could be, that they not needed.
-     -->
-     
     <service name="PingService" scope="application">
         <description>
             "Ping" service - nothing important, only for informational use
         </description>
         <operation name="getDate">
             <messageReceiver class="org.apache.axis2.receivers.RawXMLINOutMessageReceiver"/>
-            <!-- Shouldn't there be some ActionMappings? Some SOAP-Action Mappings? -->
-            <actionMapping>/GetDate</actionMapping>
         </operation>
         <operation name="update">
             <messageReceiver class="org.apache.axis2.receivers.RawXMLINOnlyMessageReceiver"/>
-            <!-- Shouldn't there be some ActionMappings? Some SOAP-Action Mappings? -->
-            <actionMapping>/Update</actionMapping>
         </operation>
         <parameter name="ServiceClass">blease.Ping</parameter>
     </service>
