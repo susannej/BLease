@@ -1,8 +1,8 @@
 <project name="BLease-Client" basedir="." default="compile">
 
     <property environment="env"/>
-    <property name="AXIS2_HOME" value="C:/axis2-1.6.1/"/>
-	<property name="GROOVY_HOME" value="C:/groovy-1.8.4/"/>
+    <property name="AXIS2_HOME" value="C:/java/axis2-1.6.1/"/>
+	<property name="GROOVY_HOME" value="C:/java/groovy-1.8.4/"/>
 
     <property name="build.dir" value="${basedir}/bin"/>
 
@@ -18,10 +18,12 @@
 		<pathelement location="${build.dir}" />
 	</path>
 	<path id="groovy.classpath">
+		<!-- 
 		<fileset dir="${GROOVY_HOME}/lib">
 			<include name="*.jar" />
 		</fileset>
-	  	<!-- path location="C:/groovy-1.8.4/lib/groovy-1.8.4.jar"/ -->
+		-->
+	  	<path location="C:/java/groovy-1.8.4/embeddable/groovy-all-1.8.4.jar"/>
 	</path>
 
 	<taskdef name="groovyc"
@@ -38,7 +40,6 @@
     	    <pathelement path="${mainClassesDirectory}"/>
     	    <pathelement path="${testClassesDirectory}"/>
     	    -->
-    	  	<path location="C:/groovy-1.8.4/lib/groovy-1.8.4.jar"/>
     	    <path refid="axis2.classpath"/>
     	  </classpath>
     	  <javac source="1.7" target="1.7" debug="on" />
